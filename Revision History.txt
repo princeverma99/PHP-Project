@@ -1,0 +1,13 @@
+PrinceVerma(2013417)	28-10-2020	Created Project, Home.php, PHPFunctions.php, style.css and Completetd Home.php
+Prince Verma(2013417)	29-10-2020	Created Buy.php and Validated all the text-fields
+Prince Verma(2013417)	31-10-2020	Completed Buy.php and Created Orders.php and added File handling - to save and retrieve the data from file "purchases.txt"
+Prince Verma(2013417)	01-11-2020	Completed Orders.php, added Error and Exception Handling
+Prince Verma(2013417)	01-11-2020	Finalized the Project and Added Minor changes to CSS
+Prince Verma(2013417)	03-12-2020	Created database-connection.php, collection.php, Register.php, Login.php, Account.php, customer.php and customers.php and Completed Register.php using classes.
+Prince Verma(2013417)	04-12-2020	Modified Load() and created Login() in customer.php, Completed Account.php and Login.php (but without functions).
+Prince Verma(2013417)	06-12-2020	Created product.php, products.php, purchase.php, purchases.php, ajax.js, searchPurchases.php, Buy2.php(New Buy Page, older to be deleted afterwards) and Completed Buy2.php, Implemented AJAX on purchases.php but delete button is pending.
+Prince Verma(2013417)	08-12-2020	Deleted Buy.php, Orders.php and Login.php, Modified Buy2.php to Buy.php, Added Error and Exception Handling, Modified and added styling in style.css for the whole project, Implemented Login() and Logout() in PHPFunctions.php
+Prince Verma(2013417)	09-12-2020	Modified the code for purchases.php and searchPurchases.php, delete button on purchases.php is now working, modified purchase.php, purchases.php, product.php and products.php to use product_uuid instead of product_code as primary key, Completed purchases.php page.
+Prince Verma(2013417)	11-12-2020	Moved all the files from Classes folder to PHP Functions folder, Added filter_purchase() and modified __construct() in purchases.php, Modified purchases.php and searchPurchases.php, Added Save() and Delete() in product.php
+Prince Verma(2013417)	14-12-2020	Finalized the project, updated Cheat Sheet and added extra comments for better understanding
+Prince Verma(2013417)	14-12-2020	Final testing Done, Deleted Classes folder

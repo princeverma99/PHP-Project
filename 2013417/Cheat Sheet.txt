@@ -1,0 +1,641 @@
+****************BASICS*******************
+CHECKSUM - it's a way to make sure that the file downloaded and file on the web server are the
+same, it's not being hacked.
+There are 2 methods of encryption MD5 and SHA1
+Download - RHASH
+in command prompt type: rhash --sha1 xampp[press TAB].exe
+Compare the SHA1 or MD5 with the output generated.
+
+PHP is a server side scripting language, which means that we cannot
+know whether the php code is there or not when we 'View Page Source' i.e on the client side(browser).
+If we generate an error while writing <?php ?> syntax then the php
+code would be visible on 'View Page Source', disclosing the php code.
+Changing the extension of the file would also do the same.
+
+/********Debugging*********/
+#Debugging Important functions
+#1. var_dump()
+#2. print_r()
+#3. isset()
+#4. gettype()
+
+***************Numbers**************
+#PHP allows to check whether the number is numeric or not
+        if(is_numeric($userEntry))
+        {
+            echo "The user entry is a String";
+        }
+        else
+        {
+            echo "The user entry is not a string";
+        }
+#Function to check if the number if float
+        if(is_float($checkFloat))
+        {
+            echo "<br>It is a float";
+        }
+        else
+        {
+            echo "<br>It is not a float";
+        }
+
+*********Characters and Strings***********
+        $string = "LaSalle college";
+        
+        for($index = 0; $index < strlen($string);$index++)
+        {
+            echo "$string[$index] --> ", ord($string[$index]),"<br>";
+        }        
+                
+#echo ord('a') --> return the ascii value
+#echo chr(65) --> returns the alphabet of the specified ascii code
+        
+        echo "<br>",(mb_substr("Montréal",5,1));
+        $pies = 22.7;
+#casting
+        echo "We did ",(int)$pies," pies in the last hour";
+        $num1 = 97;
+        $num2 = 7;
+        echo "<br>",round($num1/$num2, 3);
+
+*******String Replace********
+#str_replace() is used to replace the String with new String
+        $software = "MS Office";
+#replace MS with Microsoft
+        $result = str_replace("MS", "Microsoft", $software);
+#str_ireplace() is used to replace String with new String while ignoring LowerCase and UpperCase
+	$resultNew = str_ireplace("microsoft", "MS", $result);
+
+********SubString************
+        $URL = "https://www.facebook.com";
+        echo "substr result is:", substr($URL, 3, 5);
+        
+#display the web address of the url (substr)
+#tests values : 
+#$URL = "https://www.facebook.com";
+#$URL = "ftp://www.facebook.com";
+        if(strpbrk($URL, 'www'))
+        {
+            echo "The web address of the $URL is: ", strpbrk($URL, 'www');
+        }
+        $position = strpos($URL, ':');
+        if($position!=null)
+        {
+            echo "<br>The network protocol is: ", substr($URL, 0, $position);
+        }
+        $pos = strpos($URL, '//');
+        echo "<br> $pos";
+
+/*Excerscise*/
+        $number1 = "1";
+        $number2 = "2";
+        echo "<br>",$number1/$number2;
+        #php converts the strings or characters into integers automatically, 
+        #when we use the mathematical operators
+
+
+**********Arrays**************
+There are 2 types of arrays in PHP
+1) Indexed Arrays - Elements of an array are accessible using index
+2) Associative Arrays - Elements of an array are accessible using keys
+
+#Dynamically add an element to an indexed array
+	$nicknames[] = "bob";
+	$nicknames[] = "Lashley";
+
+#Adding an element using function
+	array_push($nicknames,"Steven");
+
+#Deleting an element from array using function
+	array_pop($nicknames);
+
+#creating an array with multiple values
+	$names = array("nawaz","piyush","jatinder");
+
+#for sorting the array
+	sort($names);
+
+#In associative arrays Data cannot be accessed using indexes, data can only be accessed by the keys
+$companies = array("Microsoft"=> "Bill Gates", "Apple"=>"Steve Jobs","Google"=>"Sundar Pichai");
+	echo $companies["Microsoft"];
+
+#Associative arrays can be accessed using foreach loop
+#indexed arrays can also be accessed using foreach loop
+        foreach($companies as $key=>$value)
+        {
+            echo $key," - ", $value,"<br>";
+        }
+#for sorting associative array
+        asort($companies);
+
+#json_encode is used to convert the array to string
+        $string = json_encode($names); 
+        
+#json_decode is usde to convert the string back to array
+        $array = json_decode($string); 
+
+***********Strings and Arrays************
+#explode() split the sentence into an array of strings
+        $name = "Honorable Dr Woodry";
+        $nameArray = explode(" ", $name);
+#implode() joins array elements into string
+	$nameStr= implode(" ", $nameArray);
+
+*********Dates*************
+#Creating DateTime Object
+        $dateTimeObject = new DateTime("2020-9-28");
+        var_dump($dateTimeObject);
+        
+#UNIX Timestamp
+        $timestamp = strtotime('2020-9-30');
+#this is used to get the current date and time
+	$timestamp = strtotime('now');
+        
+        if($timestamp ==false)  #validation of date
+        {
+            echo "Error Occured";
+        }
+        else
+        {
+            echo "Date is correct";
+        }
+
+****************Interval****************
+#Used to get the dateTime
+    $endTime = new DateTime("now");
+    
+    #get the time elapsed during the page load
+    $interval = $startTime->diff($endTime);
+    
+    #echo "it took", $interval->format(), "to load this page";
+    echo $interval->format("it took %s.%F seconds to load this page");
+
+***********Functions***************
+#Functions can be made in PHP to prevent code repition and improving readability
+#There can be default and parametrized functions
+#Function declaration and definition
+            function displayWelcomeMessage(string $username)
+            {
+                echo "Welcome to my website : ", $username;
+            }
+#Function calling
+            displayWelcomeMessage("Alibaba");
+
+***********Ampersand**********
+Ampersand(&) is used to pass the Value by Reference
+function test(&$var1)
+	{
+	$var1 = 100;
+	echo "<br>Inside the function \$var1 value is : $var1";
+//prints - before calling function, $variable1 value is : 10
+ 	}
+        $variable1 = 10;
+        echo "<br>before calling function, \$variable1 value is : $variable1";
+//prints - Inside the function $var1 value is : 100
+        test($variable1);
+        echo "<br>After calling the function, \$variable1 value is $variable1";
+//prints - After calling the function, $variable1 value is 100
+
+**************PHP and HTML**************
+#Creating PHPFunctions.php file to declare constants and add HTML code to function to prevent writing HTML code to everypage instead calling functions
+#declaring constants - For efficient and effective maintenance and access
+	<?php
+	define("FOLDER_IMAGES", "images/");
+	define("LOGO", FOLDER_IMAGES."php.png"); 
+    	function createPageHeader($name)   #Parameter name passed to set the Title of every page
+    	{
+#create common HTML page header
+        ?><!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="UTF-8">
+        <title><?php echo $name; ?></title>
+#providing the link to the stylesheet using constants
+        <link rel="stylesheet" <?php echo 'href="'.CSS_FILE.'"'; ?>>
+        </head>
+        <body>
+        <?php
+    	}
+    	function createPageFooter()
+    	{
+#create common HTML page footer
+        ?>
+        </body>
+        </html>
+        <?php
+    	}
+#displayLogo(), displayCopyright(), displayMenu() function can be added.
+
+#Including the PHPFunctions File Located in PHP Folder to the Web Page
+#include_once will add the file only once in the webpage
+	include_once "PHP/PHPFunctions.php";
+#Paramter value is set to show the title of the webpage
+	createPageHeader("Index");
+#Shuffling the index of array
+	shuffle($advertisingPictures);
+
+*************Forms***************
+There are 2 ways of sending the data to the web server
+1)POST($_POST)
+2)GET($_GET)
+
+POST method is used to get the data entered by the user in the form:
+	$_POST["submit"]
+GET method is used to get the data entered by the user is the URL of the website
+It can be accessed ? in the URL:
+	http://localhost/forms?command=red
+
+isset() is used to determine if a variable is declared and Initialized
+
+FILTERING THE USER DATA FOR PREVENTING THREATS and SQL INJECTION
+1) echo filter_input(INPUT_POST,"firstname",FILTER_SANITIZE_STRING);
+2) echo filter_input(INPUT_POST,"firstname",FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+3) echo htmlspecialchars($_POST["firstname"]);
+4) echo htmlentities($_POST["firstname"]);
+
+htmlspecialchars() is to be used to FILTER DATA
+
+strlen() is used to find the length of the string
+mb_strlen() is used to find the length of the multibyte string
+
+*****************Subversion****************
+Apache Subversion is used to protect and maintain backup of the files and folder of the project.
+Subversion is a version control system
+
+Steps to Setup Subversion
+1) Goto subversion.apache.org
+2) Choose Binary Package under Download List
+3) Download VisualSVN under Windows Category
+4) Download Apache Subversion command line tools
+5) After downloading extract the files to C drive for better access under name Subversion-bin
+6) Add this folder to the Enviornment Variables Path
+7) Create a Subversion Repository
+c:\Subversion-bin create c:\subversion-repository-2013417
+8) In Netbeans, click Team->Subversion-Checkout
+	file:///c:\subversion-repository-2013417
+9) Do you PHP work
+10) right-click your project, select Subversion->Commit and enter the revision message
+11) In one month, backup your repository to submit
+svnadmin dump c:\subversion-repository-2013417 > subversion-backup-2013417
+
+*************Files***************
+Arrays cannot be written to the file therefore, json_encode and json_decode are used
+JSON(JavaScript Object Notation)
+json_encode -> converts the arrays to string
+json_decode -> convertes the string back to arrays
+
+Managing Errors and Exception is very important and they should not be displayed to the user
+error_reporting(0); #Prevents Error to be Displayed to the user
+    function ManageErrors($erroNumber, $errorString, $errorFile, $errorLine, $errorContext)
+    {
+        $debug = false;	#When debugging, it can be true to display the errors, else false to prevent error from displaying to user
+        if($debug)
+        {
+            echo "Error : ".$errorString."<br>"; 
+            echo "FileName : ".$errorFile."<br>";
+            echo "FileLine : ".$errorLine."<br>";
+        }
+        #file_put_contents(ERROR_FILE, json_encode($error)."\r\n",FILE_APPEND);
+        die("Error Occured");
+    }
+    function ManageExceptions($exception)
+    {
+        $debug = false;
+        if($debug)
+        {
+            echo "Error : ".$exception->getMessage()."<br>"; 
+            echo "FileName : ".$exception->getFile()."<br>";
+            echo "FileLine : ".$exception->getLine()."<br>";
+        }
+       	#file_put_contents(EXCEPTION_FILE, json_encode($exceptionArray)."\r\n",FILE_APPEND);
+        die("PHP ended because of an Exception");
+    }
+    set_error_handler("ManageErrors");
+    set_exception_handler("ManageExceptions");
+
+***********Cookies****************
+Cookies
+-stores info
+-cookies expire after some time
+-stored in the browser(client side)
+
+Session Variables
+-store info
+-expire when you close the browser
+-stored on the server
+
+**************HTTPS(Keys and Certificate)****************
+In order to use HTTPS connection we need to have Private key and certificate to encrypt the communication
+We will generate Key and Certificate using Cygwin
+
+Steps to download Cygwin:
+1) Goto cygwin.com
+2) Download the setup for Cygwin
+3) Install Cygwin
+4) After installation Cygwin64 Terminal will be created where we can generate key and certificate
+5) In Cygwin64 Terminal type command:
+	1) openssl
+	2) Openssl> req -nodes -x509 -newkey rsa:4096 -keyout prince.key -out prince.crt
+6) It will Generate .key and .crt file in 'C:\cygwin64\home\user' directory
+
+After generating the key and certificate we need to implement it
+Steps to use .key and .crt file in webpage
+1) Copy .crt and .key files from folder
+2) Goto C:\xampp\apache\conf\ssl.crt and paste .crt file
+3) Goto C:\xampp\apache\conf\ssl.key and paste .key file
+4) Goto C:\xampp\apache\conf\extra and open httpd-ssl.conf
+5) Replace SSL Certificate File - SSLCertificateFile "conf/ssl.crt/prince.crt"
+6) Replace SSL Key File - SSLCertificateKeyFile "conf/ssl.key/2013417.key"
+7) Save httpd-ssl.conf file and restart xampp 
+
+*********MySql*********
+In order to use MySql we will user HeidiSQL
+
+Steps to setup HeidiSQL
+1) Download HeidiSql from https://www.heidisql.com/download.php
+2) Install HeidiSql
+3) Never use empty password for root, Change the password of user - 'root', goto C:\xampp\mysql\bin>
+4) Type command - 
+	1) C:\xampp\mysql\bin>mysql.exe -u root
+	2) MariaDB [(none)]> use mysql
+	3) MariaDB [mysql]> alter user 'root'@'localhost' IDENTIFIED BY '1234';
+	4) exit
+5) After changing the password, open HeidiSQL
+6) Click New to add new session, change user to 'root' and password to '1234', change session name to desired choice, then click Open
+7) Session will be opened with the specified user and password
+
+#MariaDB data types:
+
+Instead of Primary Key to be integer use UUID()
+uuid stands for universally unique identifier
+
+Strings:
+CHAR : length of char will be fixed
+VARCHAR : length of varchar will be vary according to the user entry
+
+Numbers:
+INT
+DECIMAL(6,1) : 99999.9
+DECIMAL(5,2) : 123.45
+
+DATETIME:	NOW()
+DATE
+TIME
+
+BIT(1) : to keep true/false, or 1/0
+BLOB(Binary Large Object)
+
+#Database Connection
+Connection can be made using:
+1) MYSQLi-object
+	$connection = new mysqli('localhost', 'root', '1234', 'tests');
+    	#check connection
+    	if($connection->connect_error)
+    	{
+        	die("Connection to the database failed" . $connection->connect_error);
+    	}
+    	echo 'mySQLi-object works';
+    	$connection->close();
+
+2) MYSQLi-procedureal
+	$connection = mysqli_connect('localhost', 'root', '1234', 'tests');
+    	#check connection
+    	if(!$connection)
+    	{
+        	die("Connection to the database failed" . mysqli_connect_error($connection));
+    	}
+    	echo 'mySQLi-procedural works';
+    	mysqli_close($connection);
+	
+3) PDO (PHP data object)
+	$connection = new PDO('mysql:host=localhost; dbname=tests', 'root', '1234');
+
+We will be using PDO as it works across various system.
+
+The best and safe way to retrieve data from the database is by using Procedures
+Create Procedures in HeidiSQL, specific parameters can also be passed
+
+	BEGIN
+		SELECT *
+		FROM employees
+		WHERE name = p_name;
+	END
+
+Procedure can be easily called using Query - CALL employee_select('tony');
+
+Using the Procedure:
+1) Use Connection String
+2) write SqlQuery
+3) Prepare PDOStatement
+4) Bind Parameters
+5) Execute
+6) Fetch Data
+
+	global $connection;
+        $sqlQuery = "CALL employee_load(:pk)";
+        
+        $PDOStatement = $connection->prepare($sqlQuery);
+        
+        #$pk = "afb75034-243b-11eb-8894-c0b883e47cb1";
+        $pk = $employee_uuid;
+        
+        $PDOStatement->bindParam(':pk',$pk);
+        
+        $PDOStatement->execute();
+        #displaying the number of rows affected
+        echo $PDOStatement->rowCount()." row(s) affected";
+        if($row=$PDOStatement->fetch(PDO::FETCH_ASSOC))
+        {
+            $this->employee_uuid = $employee_uuid;
+            $this->firstname = $row['NAME'];
+            $this->salary= $row['salary'];
+            return true;
+        }
+
+#Saving and Retrieveing Passwords:
+Passwords are confidential and therefore needed to be saved securely
+PHP has a function - password_hash($password, PASSWORD_DEFAULT), which will hash the password and make the use of password secure
+Hashed password can be verified with the string using password_verify()
+
+	$passwordHash = password_hash("Hello", PASSWORD_DEFAULT);
+
+	if(password_verify("Hello", $passwordHash))
+            {
+                echo 'password match';
+            }
+
+******************Classes***********************
+******Singular Class**********
+Singular Class is used to manage a particular entity such as customer, client, purchase, etc
+#Class contains:
+1) Fields
+	private $employee_uuid = '';
+    	private $firstname = '';
+2) Functions
+	function getFirstname()
+    	{
+            return $this->firstname;
+    	}
+    	function setFirstname($newFirstname)
+    	{
+            if(mb_strlen($newFirstname) >= FIRSTNAME_MAX_LENGTH)	#Validating that firstname is not more than 25 characters
+            {
+                    return "First name cannot be more than ".FIRSTNAME_MAX_LENGTH;
+            }
+            else if(mb_strlen($newFirstname) == 0)	#Validating that firstname is not empty
+            {
+                    return "First name cannot be empty";
+            }
+            else	#When data is validated field will be set with the data
+            {
+                    $this->firstname = $newFirstname;
+                    return '';
+            }
+    	}
+
+#Creating constructor - Constructors are special member functions which are autmatically invoked when the object of the class is created
+#Constructors are of two types:
+1) Default Constructor - constructor with no parameters
+	public function __construct()
+	{
+	}
+2) Paramterized Constructor - constructor with parameters
+	public function __construct($firstname)
+	{
+		$this->firstname = $firstname;
+	}
+
+#PHP allows constructor with optional parameters
+	public function __construct($firstname = '')
+	{
+		$this->firstname = $firstname;
+	}
+#By using the optional parameters we can pass paramter or we can avoid passing parameter values
+
+#Functions can be used to Load, Insert, Update or Delete the particular entity data from database
+
+*************Collection File******************
+#A class should be used to manage the data of multiple entities
+#The entire data of the entity can be stored using associative arrays where key will be the primary key of entity
+	class collection
+    	{
+        public $items = array();
+        public function add($primary_key, $item)
+        {
+            $this->items[$primary_key] = $item;
+        }
+        public function remove($primary_key)
+        {
+            if(isset($this->items[$primary_key]))
+            {
+                unset($this->items[$primary_key]);
+            }
+	}
+    }
+
+************Plural Classes***************
+Plural Classes are used to manage multiple entites such as customers, clients, purchases, etc.
+class persons extends collection{
+    function __construct() {
+        global $connection;
+        $sqlQuery = "CALL employees_select()";
+        $PDOStatement = $connection->prepare($sqlQuery);
+        $PDOStatement->execute();
+        while($row = $PDOStatement->fetch(PDO::FETCH_ASSOC))
+        {
+            $person = new person($row['employee_id'], $row['name']);
+            $this->add($row['employee_id'], $person);
+        }
+    }
+}
+
+*****************Network Headers**********************
+header('Content-Type: text/html; charset=UTF-8');
+
+header('Expires: Thu, 01, 1994 10:00:00 GMT');
+header('Cache-Control: no-cache');
+header('pragma: no-cache');
+
+place it before <!DOCTYPE>
+
+****************AJAX******************
+AJAX stands for Asynchronous JavaScript and XML
+AJAX is used to load the data without refreshing the page
+AJAX ready states
+	0: unitialized
+	1: Loading
+	2: Loaded
+	3: Interactive
+	4: Completed
+
+#Code for AJAX - 
+	function handleError(error)
+	{
+		alert("Error occured : " , error);
+	}
+
+	function searchPurchases()
+	{
+    		try
+    		{
+                    //Variable to perform an AJAX request
+                    var xhr = getXmlHttpRequest();
+                    xhr.onreadystatechange = function()
+                    {
+                        if(xhr.readyState == XHR_READY_STATE && xhr.status == XHR_STATUS_OK)
+                        {
+                            //response is HTML
+                            //xhr.responseText
+                            document.getElementById('searchResults').innerHTML = xhr.responseText;
+                        }
+                    }
+                    xhr.open("POST", 'searchPurchases.php');
+                    //specify that the request does not contain binary data
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+                    //getting the value from the textBox date
+                    var searchQuery = document.getElementById('searchQuery').value;
+                    xhr.send('searchQuery=' + searchQuery);
+    		}
+    		catch(error)
+    		{
+                    //if any error occurs, handleError(error) will be called
+                    handleError(error);
+    		}
+        }
+
+    function getXmlHttpRequest()
+    {
+        try
+        {
+            var xhr = null;
+            if(window.XMLHttpRequest)   //for all browsers except Internet Explorer
+            {
+                xhr = new XMLHttpRequest();
+            }
+            else
+            {
+                //code for Internet Explorer
+                if(window.ActiveXObject)
+                {
+                    try
+                    {
+                        xhr = new ActiveXObject("Msxml2.XMLHTTP");
+                    }
+                    catch(error)
+                    {
+                        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                }
+                else
+                {
+                    alert("Your browser does not support XMLHTTPRequest objects");
+                }
+            }
+            return xhr;
+        }
+        catch(error)
+        {
+            //if any error occurs, handleError(error) will be called
+            handleError(error);
+        }
+    }

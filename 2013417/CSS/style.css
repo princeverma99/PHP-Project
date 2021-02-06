@@ -1,0 +1,190 @@
+/**Styling for Body*/
+body
+{
+    margin : 0;
+    background-color: cyan;
+    height: auto;
+}
+/*Styling for Header and Footer*/
+.navMenu
+{
+    background-color: black;
+    padding: 10px 0 10px 0;
+}
+ul
+{
+    display: inline-block;
+    list-style-type: none;
+    float: right;
+    padding: 40px 70px 40px 0;
+}
+a
+{
+    text-decoration: none;
+    color: cyan;
+}
+li a:hover
+{
+    opacity: 0.4;
+}
+li
+{
+    display: inline-block;
+    font-size: 18px;
+    padding: 0 20px;
+}
+.copyright
+{
+    text-align: center;
+    background-color: black;
+    color: cyan;
+    padding-top: 20px; 
+    padding-bottom: 20px;
+    margin: 0;
+}
+
+/*CSS for required fields and validation error*/
+.required
+{
+    color: red;
+    text-align: center;
+}
+.validation
+{
+    color: red;
+}
+
+
+/*CSS for Home.php*/
+/*Product Cycle is Displayed at bigger size*/
+.product_cycle
+{
+    width: 700px;
+    display: block;
+    margin: 0 auto 0 auto;
+    border: 5px solid red;
+}
+.product
+{
+    width: 400px;
+    display: block;
+    margin: 0 auto 0 auto;
+}
+.info
+{
+    width: 60%;
+    text-align: center;
+    margin: 20px auto 0 auto;
+}
+/*CSS for CheatSheet*/
+.cheatSheet a
+{
+    color: gray;
+}
+.cheatSheet a:hover
+{
+    color: black;
+}
+.cheatSheet
+{
+    text-align: center;
+    margin-bottom: 0;
+}  
+
+
+/*CSS for Buttons and forms*/
+form
+{
+    text-align: center;
+}
+.button
+{
+    font-size: 15px;
+    padding: 8px;
+    border: 2px solid cyan;
+    border-radius: 20px;
+    color: cyan;
+    background-color: black;
+}
+.button:hover
+{
+    background-color: cyan;
+    cursor: pointer;
+    color: black;
+    border: 2px solid black;
+} 
+
+/*Styling for Login()*/
+.loginRegister
+{
+    text-align: center;
+}
+.loginRegister a
+{
+    color: black;
+    font-weight: bold;
+}
+.loginRegister a:hover
+{
+    opacity: 0.5;
+}
+.incorrectError
+{
+    margin: 10px 0 0 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*CSS for purchases.php*/
+.purchasesForm
+{
+    text-align: center;
+}
+
+/*CSS for searchPurchases.php*/
+#tblPurchases
+{
+    text-align: center;
+}
+table, th, td
+{
+    border: 1px solid black;
+}
+table
+{
+    width: 70%;
+    margin: auto;
+}
+.purchasesForm
+{
+    margin-top: 20px;
+}
+
+/*CSS for Errors and Exceptions*/
+.ErrorsandExceptions
+{
+    text-align: center;
+}
+
+/*CSS for Account.php*/
+.updateInfo
+{
+    text-align: center;
+}
+
+/*CSS for Buy.php*/
+.buyInfo
+{
+    text-align: center;
+}
+
+/*CSS for Register.php*/
+.registerInfo
+{
+    text-align: center;
+}
+/*CSS for purchase.php*/
+.deleteInfo
+{
+    text-align: center;
+}
